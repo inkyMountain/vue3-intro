@@ -80,6 +80,31 @@ export default defineComponent({
       onGoodsClick,
     }
   },
+
+  // setup(props) {
+  //   const { goodsList, goodsAmount, fetchGoodsList } = useGoodsList()
+  //   const { tabs, fetchTabs } = useTabs()
+
+  //   onMounted(() => {
+  //     fetchTabs()
+  //       .then((fetchedTabs) => {
+  //         tabs.push(...fetchedTabs)
+  //         const firstTab = fetchedTabs[0]
+  //         return firstTab ? fetchGoodsList(firstTab.id.toString()) : []
+  //       })
+  //       .then((fetchedGoodsList) => {
+  //         goodsList.push(...fetchedGoodsList)
+  //       })
+  //   })
+
+  //   return {
+  //     goodsList,
+  //     goodsAmount,
+  //     fetchGoodsList,
+  //     tabs,
+  //     fetchTabs,
+  //   }
+  // },
 })
 </script>
 
