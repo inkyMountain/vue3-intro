@@ -1,6 +1,7 @@
 <template>
   <div class="goods-list">
     <template v-for="goods in goodsList" :key="goods.id">
+      <!-- 在 v-for 的情况下，ref不再自动整合为一个数组，而是开发者提供一个函数，自行处理 dom 的去向。 -->
       <div class="goods" @click="onGoodsClick(goods)" :ref="(el) => goodsRefs.push(el)">
         {{ goods.name }}
       </div>

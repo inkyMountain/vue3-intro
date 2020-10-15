@@ -1,15 +1,17 @@
 <template>
   <div class="tabs">
+    {{ selectedTabId }}
+    <!-- key需要写在 template 上。 -->
     <template v-for="tab in tabs" :key="tab.id">
-      <span class="tab" @click="onTabClick(tab)">
+      <div class="tab" @click="onTabClick(tab)">
         {{ tab.title }}
-      </span>
+      </div>
     </template>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onUpdated, toRefs, watch, watchEffect } from 'vue';
 
 export default defineComponent({
   name: 'Tabs',
@@ -19,37 +21,48 @@ export default defineComponent({
       type: Array,
       required: true,
       default() {
-        return []
+        return [];
       },
     },
 
+    // 如果 v-model 后面加参数的话，modelValue需要改成对应的参数。
     modelValue: {
       type: String,
       required: false,
     },
   },
 
-  setup(props, { emit, attrs, slots }) {
+  setup(
+    props: { tabs: Array<{ title: string; id: string }>; modelValue: string },
+    { emit, attrs, slots }
+  ) {
     const onTabClick = (tab: any) => {
-      emit('update:modelValue', tab.id)
-    }
+      // 如果 v-model 后面加参数的话，modelValue需要改成对应的参数。
+      emit('update:modelValue', tab.id);
+    };
+
+    // const { modelValue: selectedTabId } = props;
+
+    watchEffect(() => {
+      // console.log('props', props.modelValue);
+    });
 
     return {
       onTabClick,
-    }
+      // selectedTabId,
+    };
   },
-})
+});
 </script>
 
 <style scoped lang="less">
 .tabs {
   overflow-x: auto;
-  // padding: 10px 0;
+  display: flex;
   &::-webkit-scrollbar {
     display: none;
   }
   .tab {
-    // padding: 0 10px;
     padding: 10px;
     color: white;
     background-color: lightskyblue;
