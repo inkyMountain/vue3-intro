@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Tabs',
@@ -25,22 +25,34 @@ export default defineComponent({
 
     modelValue: {
       type: String,
-      required: false
+      required: false,
     },
   },
-  
-  setup(props, {emit, attrs, slots}) {
+
+  setup(props, { emit, attrs, slots }) {
     const onTabClick = (tab: any) => {
       emit('update:modelValue', tab.id)
     }
 
     return {
-      onTabClick
+      onTabClick,
     }
-  }
-});
+  },
+})
 </script>
 
 <style scoped lang="less">
-
+.tabs {
+  overflow-x: auto;
+  // padding: 10px 0;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .tab {
+    // padding: 0 10px;
+    padding: 10px;
+    color: white;
+    background-color: lightskyblue;
+  }
+}
 </style>

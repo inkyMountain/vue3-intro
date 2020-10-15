@@ -17,9 +17,14 @@ const useTabs = () => {
 
   const tabs = reactive<Array<{ id: number; name: string }>>([])
 
+  const onTabClick = (tabId: string) => {
+    console.log('tabId', tabId)
+  }
+
   return {
     fetchTabs,
     tabs,
+    onTabClick
   }
 }
 
